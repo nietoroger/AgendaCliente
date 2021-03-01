@@ -1,0 +1,318 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700;900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    font-family: 'Source Sans Pro', sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+
+:root {
+    /* Colores */
+    --main-color-negro: #33383e;
+    --main-color-negro-claro: #3d3d3df2;
+    --main-color-verde: #06BA63;
+    --main-color-azul: #255C99;
+    --main-color-azul-claro: #7EA3CC;
+    --main-color-azul-claro2: #0d6efd40;
+    --main-color-rojo: #C42021;
+    --main-color-gris-oscuro: #7F7F7F;
+    --main-color-gris: #A5A5A5;
+    --main-color-gris-claro: #d1d1d1;
+    --main-color-gris-claro2: #f2f2f287;
+    --main-color-blanco: #ffffff;
+}
+
+h1, h2, h3, h4, h5, button {
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* La versión móvil es la estándar, la de escritorio se configura en los media queries */
+.fondo-body {
+    background-color: var(--main-color-blanco);
+    height: 100vh;
+}
+
+.home-agenda-body {
+    background-image: none;
+}
+
+.bg-blanco {
+    background-color: var(--main-color-blanco);
+}
+
+.bg-gris {
+    background-color: var(--main-color-gris-claro2);
+}
+
+.btn-verde-exito {
+    background-color: var(--main-color-verde) !important;
+    box-shadow: none !important;
+}
+
+.bg-azul-primario {
+    background-color: var(--main-color-azul) !important;
+}
+
+.bg-azul {
+    background-color: #8DA7BE;
+}
+
+.texto-blanco {
+    color: var(--main-color-blanco) !important;
+}
+
+.no-hover-blanco:hover {
+    color: var(--main-color-blanco) !important;
+}
+
+.link-blanco:hover {
+    color: var(--main-color-blanco);
+}
+
+.linea-baja-azul {
+    border-bottom: 1px solid var(--main-color-azul);
+}
+
+.color-texto {
+    color: var(--main-color-negro-claro);
+}
+
+.color-rojo {
+    color: var(--main-color-rojo);
+}
+
+.color-blanco {
+    color: var(--main-color-blanco);
+}
+
+.color-azul {
+    color: var(--main-color-azul);
+}
+
+.btn-outline-primary {
+    background-color: var(--main-color-blanco) !important;
+    border-color: var(--main-color-azul) !important;
+    color: var(--main-color-azul) !important;
+}
+
+.btn-check:active+.btn-outline-primary, 
+.btn-check:checked+.btn-outline-primary, 
+.btn-outline-primary.active, 
+.btn-outline-primary.dropdown-toggle.show, 
+.btn-outline-primary:active {
+    background-color: var(--main-color-azul) !important;
+    color: var(--main-color-blanco) !important;
+}
+
+.btn-check:active+.btn-outline-primary:focus, 
+.btn-check:checked+.btn-outline-primary:focus, 
+.btn-outline-primary.active:focus, 
+.btn-outline-primary.dropdown-toggle.show:focus, 
+.btn-outline-primary:active:focus,
+.btn-check:focus+.btn-outline-primary, 
+.btn-outline-primary:focus {
+    box-shadow: none !important;
+}
+
+.boton-azul {
+    color: var(--main-color-blanco) !important;
+    background-color: var(--main-color-azul) !important;
+    border-color: var(--main-color-blanco) !important;
+}
+
+.boton-outline-azul {
+    color: var(--main-color-azul) !important;
+    background-color: var(--main-color-blanco) !important;
+    border-color: var(--main-color-azul) !important;
+}
+
+.boton-home-buscar:hover {
+    background-color: #3779d4 !important;
+    transition: 175ms;
+}
+
+.logo-agenda-home {
+    max-height: 50px;
+    width: 35%;
+    position: absolute;
+    margin: 20px;
+}
+
+.btn-buscar-medicos {
+    height: 48px;
+}
+
+.avatar-custom {
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border: 2px solid var(--main-color-gris-claro);
+    border-radius: 50%;  
+}
+
+.avatar-custom img {
+    min-width: 100%;
+    /* width: 100%; */
+    height: 100%;
+    border-radius: 50%;
+}
+
+.card-medico {
+    border: 1px solid var(--main-color-gris-claro);
+    border-radius: 20px;
+    background-color: var(--main-color-blanco);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 1.5rem;
+    /* box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+}
+
+.card-1 {
+    background-color: var(--main-color-blanco);
+    border: none;
+    border-radius: none;
+    /* box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+    padding: 14px;
+    width: 100%;
+    /* height: 100vh; */
+}
+
+.flechas-horas {
+    max-width: 15px;
+    cursor: pointer;
+}
+
+.btn-horario {
+    align-items: center;
+    background-color: var(--main-color-azul-claro2);
+    border-radius: 5px;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 2px;
+    padding: 2px;
+    outline: none !important;
+    width: 100%;
+}
+
+.btn-horario img {
+    width: 12px;
+    padding-right: 2px;
+    /* padding-left: 1px; */
+}
+
+.btn-horario span {
+    color: var(--main-color-azul);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.btn-horario:hover {
+    background-color: #0d6efd5e;
+    transition: 0.3s;
+}
+
+.btn-horario:disabled {
+    background-color: #0d6efd17;
+}
+
+.btn-volver {
+    background-color: transparent;
+    border: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+    position: relative;
+    margin-left: 20px;
+    outline: none !important;
+}
+
+.btn-volver img {
+    width: .6rem;
+    margin-right: 6px;
+}
+
+.btn-volver span {
+    color: var(--main-color-azul);
+    font-weight: 500;
+    font-size: 1rem;
+}
+
+/* Icono cámara en Botón hora agenda */
+.icon-agenda {
+    width: 13px;
+    margin-left: 3px;
+}
+
+.img-mini {
+    width: 2rem;
+}
+
+@media (min-width: 576px) {
+
+    .home-agenda-body {
+        background-image: url('../img/olas.svg');
+        background-repeat: no-repeat;
+        background-position:bottom;
+        background-size: contain;
+    }
+
+    .text-sm-left {
+        text-align: left !important;
+    }
+
+    .logo-agenda-home {
+        max-height: 70px;
+        width: 20%;
+    }
+
+    .card-1 {
+        border: 1px solid var(--main-color-gris-claro);
+        border-radius: 20px;
+        /* box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23); */
+        height: auto;
+        margin-top: 40px;
+        padding: 20px;
+        width: 450px;
+    }
+
+    .fondo-body {
+        background-color: #efefef62;
+        height: 100vh;
+    }
+
+}
+
+@media (min-width: 800px) {
+
+    .btn-volver {
+        background-color: transparent;
+        border: none;
+        bottom: auto;
+        /* cursor: pointer; */
+        position: absolute;
+        margin-left: 10%;
+        margin-top: 3%;
+        text-decoration: none !important;
+    }
+    
+    .btn-volver img {
+        margin-right: 6px;
+    }
+    
+    .btn-volver span {
+        color: var(--main-color-azul);
+        font-size: 1rem;
+    }
+
+}
