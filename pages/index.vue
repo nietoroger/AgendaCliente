@@ -14,11 +14,11 @@
         <div class="col-12 col-md-10 col-lg-9">
           <LazyFiltroInicial />
           <div class="d-flex mx-3 mt-4">
-            <b-img
+            <!-- <b-img
               src="~/assets/img/anular-hora.svg"
               class="icon-agenda me-2"
               alt="anular"
-            ></b-img>
+            ></b-img> -->
             <NuxtLink class="color-texto h5 m-0" to="/anular">
               Anular una hora</NuxtLink
             >

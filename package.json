@@ -15,9 +15,13 @@
     "core-js": "^3.8.3",
     "moment": "^2.29.1",
     "nuxt": "^2.14.12",
+    "nuxt-vue-select": "^0.1.4",
+    "vue-select": "^3.11.2",
     "vuelidate": "^0.7.6"
   },
   "devDependencies": {
-    "@nuxtjs/moment": "^1.6.1"
+    "@nuxtjs/moment": "^1.6.1",
+    "@nuxtjs/pwa": "^3.3.5",
+    "prettier": "1.19.1"
   }
 }

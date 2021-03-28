@@ -3,7 +3,7 @@
     id="modalAnular"
     header-class="fw-bold"
     title="¿Está seguro que desea anular esta reserva?"
-    @ok="anular"
+    @ok="$emit('ok')"
   >
     <template v-slot:modal-title>
       <h5 class="modal-title fw-bold color-texto">
@@ -32,10 +32,10 @@ export default {
     }),
   },
   methods: {
-    async anular() {
-      await this.$api.anularReserva(this.reserva.id);
-      this.$router.push("/");
-    },
+    // async anular() {
+    //   await this.$api.anularReserva(this.reserva.id);
+    //   this.$router.push("/ReservaAnulada");
+    // },
   },
 };
 </script>

@@ -6,10 +6,9 @@
       <Calendarioreserva />
     </div>
     <!-- Botón Anular -->
-    <b-button v-b-modal.modalAnular class="btn boton-azul col-12">
+    <b-button class="btn boton-azul col-12" @click="$emit('AbrirModal')">
       Anular reserva
     </b-button>
-    <ModalAnular />
   </div>
 </template>
 

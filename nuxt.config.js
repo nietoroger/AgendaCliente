@@ -1,7 +1,10 @@
 export default {
   // Disable server-side rendering: https://go.nuxtjs.dev/ssr-mode
   ssr: false,
-
+  target: 'static',
+  router: {
+    base: '/app/'
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Agenda cliente',
@@ -11,7 +14,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', 'http-equiv':"Content-Security-Policy", content: 'upgrade-insecure-requests' }
+      //{ hid: 'description', name: 'description', 'http-equiv': "Content-Security-Policy", content: 'upgrade-insecure-requests' }
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
@@ -20,6 +23,10 @@ export default {
         href: 'https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css',
         integrity: 'sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1',
         crossorigin: 'anonymous'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://unpkg.com/vue-select@latest/dist/vue-select.css',
       }
     ],
     script: [
@@ -50,15 +57,32 @@ export default {
   plugins: [
     "@/plugins/vuelidate.js",
     "@/plugins/axios",
-    "~/plugins/api.plugin.js"
+    "~/plugins/api.plugin.js",
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
-
+  pwa: {
+    manifest: {
+      name: 'Agenda cliente',
+      short_name: 'Agenda',
+      lang: 'es',
+      useWebmanifestExtension: false
+    },
+    workbox: {
+      /* workbox options */
+      autoRegister: true,
+      enabled: true,
+      offline: true,
+      offlineStrategy: 'NetworkFirst',
+      offlinePage: null,
+      offlineAssets: [],
+    },
+  },
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
   buildModules: [
-    '@nuxtjs/moment'
+    '@nuxtjs/moment',
+    '@nuxtjs/pwa',
   ],
   moment: {
     locales: ['es']
@@ -69,13 +93,13 @@ export default {
     'bootstrap-vue/nuxt',
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
-    //'@/modules/servicios.js'
+    'nuxt-vue-select'
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
     //baseURL: 'http://190.208.57.219:8082/MKServicios/apiagenda/'
-    baseURL: "http://masterkey.fortidyndns.com:4444/mkodata/odata/" //"http://localhost:49440/odata/"
+    baseURL: "http://masterkey.fortidyndns.com:8082/mkodata/odata/" //"http://localhost:49440/odata/"
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

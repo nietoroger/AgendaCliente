@@ -1,80 +1,74 @@
 <template>
   <div>
-    <button class="btn-volver" @click="$router.push('/')">
-      <img src="@/assets/img/flecha-atras.svg" alt="volver" />
-      <span>Volver</span>
-    </button>
-    <div class="d-flex justify-content-center pb-4">
-      <div class="card-1">
-        <h3 class="text-center text-sm-start color-azul fw-bold">
-          Anular una reserva
-        </h3>
-        <!-- <div v-if="!showDetails"> -->
-        <div>
-          <div class="mb-2 mt-3">
-            <!-- <h5 class="text-center text-sm-start color-azul">Queda un último paso...</h5> -->
-            <h5 class="text-center text-sm-start color-azul">
-              Ingresa los datos de la reserva
-            </h5>
-          </div>
-          <div class="d-flex flex-column">
-            <!-- Rut o pasaporte -->
-            <input-identificacion
-              ref="idPaciente"
-              :readonly="showDetails"
-              v-model.lazy="$v.form.idPaciente.$model"
-            ></input-identificacion>
-
-            <!-- Código reservaectrónico -->
-            <div class="form-floating mb-4">
-              <b-form-input
-                type="text"
+    <div v-if="!anulada">
+      <button class="btn-volver" @click="$router.push('/')">
+        <img src="@/assets/img/flecha-atras.svg" alt="volver" />
+        <span>Volver</span>
+      </button>
+      <div class="d-flex justify-content-center pb-4">
+        <div class="card-1">
+          <h3 class="text-center text-sm-start color-azul fw-bold">Anular una reserva</h3>
+          <!-- <div v-if="!showDetails"> -->
+          <div>
+            <div class="mb-2 mt-3">
+              <!-- <h5 class="text-center text-sm-start color-azul">Queda un último paso...</h5> -->
+              <h5 class="text-center text-sm-start color-azul">Ingresa los datos de la reserva</h5>
+            </div>
+            <div class="d-flex flex-column">
+              <!-- Rut o pasaporte -->
+              <input-identificacion
+                ref="idPaciente"
                 :readonly="showDetails"
-                class="form-control"
-                id="reserva"
-                :class="{ 'is-invalid': $v.form.reserva.$error }"
-                v-model.trim.lazy="$v.form.reserva.$model"
-              >
-              </b-form-input>
-              <label for="reserva">Código de reserva</label>
-              <div v-if="!$v.form.reserva.required" class="invalid-feedback">
-                Valor obligatorio
-              </div>
-              <div v-if="!$v.form.reserva.minLength" class="invalid-feedback">
-                Debe contener 5 caracteres
-              </div>
-            </div>
-            <div>
-              <b-alert class="mb-4" variant="success" :show="showAlert"
-                >La reserva ingresada no existe</b-alert
-              >
-            </div>
-            <!-- Botón Aceptar / botón debería desplegar  -->
-            <b-button
-              class="btn boton-azul"
-              v-if="!showDetails"
-              @click="MostrarDetalles"
-            >
-              Aceptar
-            </b-button>
+                v-model.lazy="$v.form.idPaciente.$model"
+              ></input-identificacion>
 
-            <DetallesReserva
-              ref="detareserva"
-              v-if="showDetails"
-              :reserva="reserva"
-            />
-            <b-button
-              type="reset"
-              v-if="showDetails"
-              class="col-12 btn btn-secondary mt-4"
-              @click="clear"
-            >
-              Limpiar
-            </b-button>
+              <!-- Código reservaectrónico -->
+              <div class="form-floating mb-4">
+                <b-form-input
+                  type="text"
+                  :readonly="showDetails"
+                  class="form-control"
+                  id="reserva"
+                  :class="{ 'is-invalid': $v.form.reserva.$error }"
+                  v-model.trim.lazy="$v.form.reserva.$model"
+                ></b-form-input>
+                <label for="reserva">Código de reserva</label>
+                <div v-if="!$v.form.reserva.required" class="invalid-feedback">Valor obligatorio</div>
+                <div
+                  v-if="!$v.form.reserva.minLength"
+                  class="invalid-feedback"
+                >Debe contener 5 caracteres</div>
+              </div>
+              <div>
+                <b-alert
+                  class="mb-4"
+                  variant="success"
+                  :show="showAlert"
+                >La reserva ingresada no existe</b-alert>
+              </div>
+              <!-- Botón Aceptar / botón debería desplegar  -->
+              <b-button class="btn boton-azul" v-if="!showDetails" @click="MostrarDetalles">Aceptar</b-button>
+
+              <LazyDetallesReserva
+                ref="detareserva"
+                v-if="showDetails"
+                :reserva="reserva"
+                @AbrirModal="abrirModal"
+              />
+              <b-button
+                type="reset"
+                v-if="showDetails"
+                class="col-12 btn btn-secondary mt-4"
+                @click="clear"
+              >Limpiar</b-button>
+
+              <LazyModalAnular @ok="anularReserva" />
+            </div>
           </div>
         </div>
       </div>
     </div>
+    <LazyReservaAnulada v-if="anulada" />
   </div>
 </template>
 
@@ -96,11 +90,12 @@ export default {
       showDetails: false,
       showAlert: false,
       reserva: null,
+      anulada: false,
       form: {
-        reserva: "",
+        reserva: "2HBR6Y",
         idPaciente: {
           tipo: "R",
-          identificacion: "",
+          identificacion: "21606447K",
         },
       },
     };
@@ -138,6 +133,15 @@ export default {
           this.reserva = null;
         }
       }
+    },
+    abrirModal() {
+      // console.log("Abriendo modal");
+      this.$bvModal.show("modalAnular");
+    },
+    async anularReserva() {
+      // console.log("anular reserva");
+      await this.$api.anularReserva(this.reserva.id);
+      this.anulada = true;
     },
     clear() {
       this.showDetails = false;

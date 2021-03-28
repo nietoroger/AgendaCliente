@@ -2,15 +2,15 @@ export class apiService {
   constructor({ $axios }) {
     this.axios = $axios;
   }
-
+//baseURL: http://masterkey.fortidyndns.com:8082/mkodata/odata/
   async getEspecialidades() {
-    const url = '/especialidades?filter=activo eq true&$orderby=descripcion asc';
+    const url = '/especialidades?$filter=activo eq 1&$orderby=descripcion asc';
     const res = await this.axios.$get(url);
     return res;
   }
 
   async getPrevisiones() {
-    const url = '/previsiones?filter=activo eq true&$orderby=id asc';
+    const url = '/previsiones?$filter=activo eq 1&$orderby=id asc';
     const res = await this.axios.$get(url);
     return res;
   }
@@ -31,6 +31,11 @@ export class apiService {
 
   async getProfesional(id) {
     const url = `/profesionales(${id})`;
+    const res = await this.axios.$get(url);
+    return res;
+  }
+  async getProfesionalesEspecialidad(id) {
+    const url=`/profesionales?$filter=codespecialidad eq ${id}&$orderby=descripcion`;
     const res = await this.axios.$get(url);
     return res;
   }
